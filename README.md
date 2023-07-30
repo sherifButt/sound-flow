@@ -16,15 +16,15 @@ The oscillator node generates sound based on frequency, and the waveform (sine, 
 
 ## Demo
 
-![App Demo](demo.gif)
+🔗 [App Demo](jolly-blancmange-5a2379.netlify.app)
 
 ## Setup
 
 1. Clone the repository:
 
 ```
-git clone <repository_url>
-cd audio-synthesizer-app
+git clone https://github.com/sherifButt/sound-flow
+cd sound-flow
 ```
 
 2. Install dependencies:
