@@ -1,6 +1,6 @@
-# Oscillator Audio Flow App
+# Sound Flow App
 
-Oscillator Audio Flow App is a React-based application designed to manipulate audio nodes through a simple graphical interface. This application utilizes the Web Audio API and Zustand for state management. It lets users connect different nodes (Oscillator, Gain, and Output) and alter the properties of these nodes to create and manipulate sound.
+Sound Flow App is a React-based application designed to manipulate audio nodes through a simple graphical interface. This application utilizes the Web Audio API and Zustand for state management. It lets users connect different nodes (Oscillator, Gain, and Output) and alter the properties of these nodes to create and manipulate sound.
 
 The oscillator node generates sound based on frequency, and the waveform (sine, square, sawtooth, triangle) you choose. The gain node controls the volume of the sound, and finally, the output node is where the sound is played.
 
