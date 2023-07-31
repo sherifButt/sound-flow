@@ -21,13 +21,14 @@ const selector = store => ({
   onNodesChange: store.onNodesChange,
   onEdgesChange: store.onEdgesChange,
   onNodesDelete: store.removeNodes,
+  onEdgesDelete:store.onEdgesDelete,
   addEdge: store.addEdge,
   addNode: store.addNode,
 })
 
 function App() {
   const store = useStore(selector, shallow)
-  const { nodes, edges, onNodesChange, onEdgesChange, addEdge, addNode,onNodesDelete } = store
+  const { nodes, edges, onNodesChange, onEdgesChange, addEdge, addNode,onNodesDelete,onEdgesDelete } = store
 
 
   return (
@@ -41,6 +42,7 @@ function App() {
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onNodesDelete={onNodesDelete}
+            onEdgesDelete={onEdgesDelete}
             onConnect={addEdge}
             fitView
           >

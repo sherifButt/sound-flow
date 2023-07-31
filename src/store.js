@@ -1,7 +1,7 @@
 import { applyNodeChanges, applyEdgeChanges } from "reactflow"
 import { nanoid } from "nanoid"
 import { create } from "zustand"
-import { connect, removeAudioNode, updateAudioNode, isRunning, toggleAudio, createAudioNode } from "./audio"
+import { connect,disconnect, removeAudioNode, updateAudioNode, isRunning, toggleAudio, createAudioNode } from "./audio"
 
 
 const initialNodes = [
@@ -39,6 +39,13 @@ export const useStore = create((set, get) => ({
 
         set({ edges: [edge, ...get().edges] });
         connect(data.source, data.target);
+    },
+
+    onEdgesDelete(deletedEdges){
+        console.log('deletedEdges :>> ', deletedEdges);
+        for(const {source,target} of deletedEdges){
+            disconnect(source,target);
+        }
     },
 
     addNode(data) {

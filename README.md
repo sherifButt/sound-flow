@@ -68,6 +68,44 @@ The app relies on the following major dependencies:
 - Zustand: A minimal state management library.
 - nanoid: For generating unique node IDs.
 
+## Sequence Diagram
+
+How processes operate with one another and in what order.
+
+```mermaid
+sequenceDiagram
+  User->>App: Start
+  App->>Osc: Create Osc Node
+  Osc-->>App: Osc Node Created
+  App->>Gain: Create Gain Node
+  Gain-->>App: Gain Node Created
+  App->>Out: Create Output Node
+  Out-->>App: Output Node Created
+  User->>App: Change Node Properties
+  App->>Osc: Update Osc Node
+  App->>Gain: Update Gain Node
+  App->>Out: Toggle Audio
+```
+
+## State Diagram
+
+Simplified Mermaid state Diagram showing the lifecycle of an audio node:
+
+```mermaid
+stateDiagram-v2
+  [*] --> Created: Create Node
+  Created --> Connected: Connect Node
+  Connected --> Updated: Update Node
+  Updated --> Playing: Toggle Audio
+  Playing --> Stopped: Toggle Audio
+  Stopped --> Updated: Update Node
+  Stopped --> Deleted: Remove Node
+  Deleted --> [*]
+```
+
+You can view and edit these diagrams using [Mermaid Live Editor](https://mermaid-js.github.io/mermaid-live-editor/).
+
+
 ## Credits
 
 The app is built on top of ReactFlow, which provides the core functionality for handling node-based UI interactions.
