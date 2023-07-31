@@ -26,7 +26,7 @@ return (
                         value={data.gain}
                         onChange={setGain}
                     />
-                    <p className='text-right text-xs'>{data.gain.toFixed(2)}</p>
+                    <p className='text-right text-xs'>{data.gain}</p>
                 </label>
                 
 

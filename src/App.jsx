@@ -49,7 +49,9 @@ function App() {
         </ReactFlowProvider>
       </div>
       <div>
-        <button onClick={addNode}>Add Node</button>
+        <button onClick={()=>addNode({type:'osc'})}>Add Osc</button>
+        <button onClick={()=>addNode({type:'gain'})}>Add Amp</button>
+        <button onClick={()=>addNode({type:'out'})}>Add Out</button>
         <pre className='text-left text-xs leading-3'>
           <code>
             {JSON.stringify(store, null, 2)}

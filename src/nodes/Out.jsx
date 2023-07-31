@@ -17,14 +17,14 @@ export default function Out({id,data}){
         <div>
          
   
-          <button onClick={toggleAudio}>
-            {!isRunning ? (
+          <button onClick={()=>toggleAudio({})}>
+            {isRunning ? (
               <span role="img" aria-label="mute">
-                🔇
+                ⏸
               </span>
             ) : (
               <span role="img" aria-label="unmute">
-                🔈
+                ▶️
               </span>
             )}
           </button>

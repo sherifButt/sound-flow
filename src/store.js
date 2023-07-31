@@ -1,13 +1,13 @@
 import { applyNodeChanges, applyEdgeChanges } from "reactflow"
 import { nanoid } from "nanoid"
 import { create } from "zustand"
-import { connect, removeAudioNode, updateAudioNode,isRunning,toggleAudio } from "./audio"
+import { connect, removeAudioNode, updateAudioNode, isRunning, toggleAudio, createAudioNode } from "./audio"
 
 
 const initialNodes = [
     { id: 'a', data: { label: 'Oscillator', frequency: 220 }, position: { x: 0, y: 0 }, type: 'osc' },
     { id: 'b', data: { label: 'gain', gain: 0.50 }, position: { x: 200, y: 0 }, type: 'gain' },
-    { id: 'c', data: { label: 'output', isRunning:false }, position: { x: 400, y: 0 }, type: 'out' },
+    { id: 'c', data: { label: 'output', isRunning: false }, position: { x: 400, y: 0 }, type: 'out' },
 ]
 
 const initialEdges = [
@@ -19,7 +19,7 @@ export const useStore = create((set, get) => ({
     nodes: initialNodes,
     edges: [],
 
-   
+
 
     onNodesChange(changes) {
         set({
@@ -42,10 +42,15 @@ export const useStore = create((set, get) => ({
     },
 
     addNode(data) {
-        const id = nanoid(6)
-        const node = { id, data: { label: 'new_node',"frequency": 220 }, position: { x: data.x, y: data.y } ,type:'osc'}
-        set({ nodes: [node, ...get().nodes] })
-    },
+        const id = nanoid(6);
+        const node = { id, data: { label: 'new_node', ...data }, position: { x: data.x, y: data.y }, type: data.type };
+        
+        // Create the corresponding audio node
+        createAudioNode(id, data); 
+        
+        set({ nodes: [node, ...get().nodes] });
+      },
+      
 
     updateNode(id, data) {
         updateAudioNode(id, data);
@@ -60,15 +65,15 @@ export const useStore = create((set, get) => ({
 
     removeNodes(nodes) {
         for (const { id } of nodes) {
-          removeAudioNode(id)
+            removeAudioNode(id)
         }
-      },
+    },
 
-      isRunning: isRunning(),
+    isRunning: isRunning(),
 
-      toggleAudio() {
+    toggleAudio() {
         toggleAudio().then(() => {
-          set({ isRunning: isRunning() });
+            set({ isRunning: isRunning() });
         });
-      }
-    }));
+    }
+}));
